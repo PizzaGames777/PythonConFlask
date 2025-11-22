@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Compras (Suma Stock)</h2>
+
+<form method="POST" class="mb-4">
+    <div class="mb-3">
+        <label class="form-label">Producto</label>
+        <select name="producto_id" class="form-control">
+            {% for p in productos %}
+            <option value="{{ p.id }}">{{ p.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Proveedor</label>
+        <select name="proveedor_id" class="form-control">
+            {% for pr in proveedores %}
+            <option value="{{ pr.id }}">{{ pr.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Cantidad</label>
+        <input type="number" name="cantidad" class="form-control">
+    </div>
+
+    <button class="btn btn-success">Registrar Compra</button>
+</form>
+
+<hr>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th><th>Producto</th><th>Proveedor</th><th>Cantidad</th><th>Fecha</th>
+    </tr>
+
+    {% for c in compras %}
+    <tr>
+        <td>{{ c.id }}</td>
+        <td>{{ c.producto.nombre }}</td>
+        <td>{{ c.proveedor.nombre }}</td>
+        <td>{{ c.cantidad }}</td>
+        <td>{{ c.fecha }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
